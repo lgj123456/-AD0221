@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private Gson mGson;
     private RecyclerView mRecyclerView;
     private Myadapter mMyadapter;
+    private MyadapterDetail mMyadapterDetail;
     private List<kuaidiNoList.ResultBean> list = new ArrayList<kuaidiNoList.ResultBean>();
 
 
@@ -81,6 +82,18 @@ public class MainActivity extends AppCompatActivity {
                         String com = edtCom.getText().toString();
                         String no = edtNo.getText().toString();
                         kuaidiUtils.getRequest1(com,no);
+
+                        mMyadapterDetail = new MyadapterDetail(kuaidiUtils.getKuaidiDetailListBean());
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+
+                                mRecyclerView.setLayoutManager(linearLayoutManager);
+                                mRecyclerView.setAdapter(mMyadapterDetail);
+                                mMyadapterDetail.notifyDataSetChanged();
+                            }
+                        });
                     }
                 }).start();
             }

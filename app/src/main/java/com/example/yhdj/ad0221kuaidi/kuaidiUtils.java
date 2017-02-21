@@ -25,6 +25,7 @@ public class kuaidiUtils {
     public static final int DEF_CONN_TIMEOUT = 30000;
     public static final int DEF_READ_TIMEOUT = 30000;
     private static kuaidiNoList sKuaidiNoList;
+    private static KuaidiDetailListBean sKuaidiDetailListBean;
     public static String userAgent =  "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.66 Safari/537.36";
 
     //配置您申请的KEY
@@ -42,8 +43,8 @@ public class kuaidiUtils {
 
         try {
             result = net(url,params,"GET");
-            sKuaidiNoList =  mGson.fromJson(result,kuaidiNoList.class);
 
+                sKuaidiDetailListBean = mGson.fromJson(result,KuaidiDetailListBean.class);
                 System.out.println(result);
 
 
@@ -65,6 +66,10 @@ public class kuaidiUtils {
 
     public static kuaidiNoList getKuaidiNoList(){
         return sKuaidiNoList;
+    }
+
+    public static KuaidiDetailListBean getKuaidiDetailListBean(){
+        return sKuaidiDetailListBean;
     }
 
     //2.快递公司编号对照表
