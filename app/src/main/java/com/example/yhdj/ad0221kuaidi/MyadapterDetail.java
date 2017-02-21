@@ -28,26 +28,25 @@ public class MyadapterDetail extends RecyclerView.Adapter<MyadapterDetail.ViewHo
 
     @Override
     public void onBindViewHolder(MyadapterDetail.ViewHolder holder, int position) {
-        KuaidiDetailListBean.ResultBean resultBean= mKuaidiDetailListBeanresultBean.getDeatil().get(position);
-        holder.tvCom.setText(resultBean.getCom());
-        holder.tvNo.setText(resultBean.getNo());
-        holder.tvStatus.setText(resultBean.getStatus());
+        KuaidiDetailListBean.ListBean listBean= mKuaidiDetailListBeanresultBean.getResult().getList().get(position);
+        holder.tvCom.setText(listBean.getDatetime());
+        holder.tvNo.setText(listBean.getRemark());
     }
 
     @Override
     public int getItemCount() {
-        return mKuaidiDetailListBeanresultBean.getDeatil().size();
+        return mKuaidiDetailListBeanresultBean.getResult().getList().size();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvCom;
         TextView tvNo;
-        TextView tvStatus;
+
         public ViewHolder(View itemView) {
             super(itemView);
             tvCom = (TextView) itemView.findViewById(R.id.tv_com);
             tvNo = (TextView) itemView.findViewById(R.id.tv_No);
-            tvStatus = (TextView) itemView.findViewById(R.id.tv_status);
+
         }
     }
 }

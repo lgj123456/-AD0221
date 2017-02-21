@@ -4,7 +4,7 @@
 
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="200dp"
   android:orientation="vertical"
 
     >
@@ -18,7 +18,7 @@
         android:layout_width="100dp"
 
         android:layout_height="wrap_content"
-        android:text="公司："
+        android:text="时间："
         />
     <TextView
         android:layout_width="100dp"
@@ -36,7 +36,7 @@
     <TextView
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="編號："
+        android:text="状态："
         />
     <TextView
         android:layout_width="100dp"
@@ -45,20 +45,6 @@
         />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-    <TextView
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text="状态:"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_status"
-        />
-        </LinearLayout>
+
+
 </LinearLayout>

@@ -27,7 +27,7 @@ public class KuaidiDetailListBean {
 
     private ResultBean result;
     private int error_code;
-    private List<ResultBean> resultDetail;
+
 
     public String getResultcode() {
         return resultcode;
@@ -61,14 +61,36 @@ public class KuaidiDetailListBean {
         this.error_code = error_code;
     }
 
-    public List<ResultBean> getDeatil(){
-        return resultDetail;
+    public static class ListBean {
+        private String datetime;
+        private String remark;
+        private String zone;
+
+        public String getDatetime() {
+            return datetime;
+        }
+
+        public void setDatetime(String datetime) {
+            this.datetime = datetime;
+        }
+
+        public String getRemark() {
+            return remark;
+        }
+
+        public void setRemark(String remark) {
+            this.remark = remark;
+        }
+
+        public String getZone() {
+            return zone;
+        }
+
+        public void setZone(String zone) {
+            this.zone = zone;
+        }
     }
 
-    public void setResultDetail(List<ResultBean> resultDetail){
-        this.resultDetail = resultDetail;
-
-    }
 
     public static class ResultBean {
         private String company;
@@ -123,34 +145,6 @@ public class KuaidiDetailListBean {
             this.list = list;
         }
 
-        public static class ListBean {
-            private String datetime;
-            private String remark;
-            private String zone;
 
-            public String getDatetime() {
-                return datetime;
-            }
-
-            public void setDatetime(String datetime) {
-                this.datetime = datetime;
-            }
-
-            public String getRemark() {
-                return remark;
-            }
-
-            public void setRemark(String remark) {
-                this.remark = remark;
-            }
-
-            public String getZone() {
-                return zone;
-            }
-
-            public void setZone(String zone) {
-                this.zone = zone;
-            }
-        }
     }
 }
