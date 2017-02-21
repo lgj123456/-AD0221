@@ -1,5 +1,7 @@
 package com.example.yhdj.ad0221kuaidi;
 
+import com.google.gson.Gson;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -18,27 +20,33 @@ import java.util.Map;
  **/
 
 public class kuaidiUtils {
+    private static final Gson mGson = new Gson();
     public static final String DEF_CHATSET = "UTF-8";
     public static final int DEF_CONN_TIMEOUT = 30000;
     public static final int DEF_READ_TIMEOUT = 30000;
+    private static kuaidiNoList sKuaidiNoList;
     public static String userAgent =  "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.66 Safari/537.36";
 
     //配置您申请的KEY
-    public static final String APPKEY ="*************************";
+    public static final String APPKEY ="5d55476845fa5f56374544f43926d32e";
 
     //1.常用快递查询API
-    public static void getRequest1(){
+    public static void getRequest1(String com, String no){
         String result =null;
         String url ="http://v.juhe.cn/exp/index";//请求接口地址
         Map params = new HashMap();//请求参数
-        params.put("com","");//需要查询的快递公司编号
-        params.put("no","");//需要查询的订单号
+        params.put("com",com);//需要查询的快递公司编号
+        params.put("no",no);//需要查询的订单号
         params.put("key",APPKEY);//应用APPKEY(应用详细页查询)
-        params.put("dtype","");//返回数据的格式,xml或json，默认json
+        params.put("dtype","json");//返回数据的格式,xml或json，默认json
 
         try {
             result = net(url,params,"GET");
-            System.out.println(result);
+            sKuaidiNoList =  mGson.fromJson(result,kuaidiNoList.class);
+
+                System.out.println(result);
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -55,13 +63,19 @@ public class kuaidiUtils {
 //        }
     }
 
+    public static kuaidiNoList getKuaidiNoList(){
+        return sKuaidiNoList;
+    }
+
     //2.快递公司编号对照表
     public static void getRequest2(){
         String result =null;
         String url ="http://v.juhe.cn/exp/com";//请求接口地址
         Map params = new HashMap();//请求参数
+        params.put("key",APPKEY);
         try {
             result =net(url, params, "GET");
+            sKuaidiNoList =  mGson.fromJson(result,kuaidiNoList.class);
             System.out.println(result);
         } catch (Exception e) {
             e.printStackTrace();
