@@ -14,6 +14,8 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.R.string.no;
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText edtCom;
@@ -77,18 +79,20 @@ public class MainActivity extends AppCompatActivity {
         btnDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final String com = edtCom.getText().toString();
+                final String no = edtNo.getText().toString();
+                if(com.isEmpty() || no.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "快递公司编号或快递订单号不能为空", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        String com = edtCom.getText().toString();
-                        String no = edtNo.getText().toString();
 
-                        if(com.isEmpty() || no.isEmpty()){
-                            Toast.makeText(MainActivity.this, "快递公司编号或快递订单号不能为空", Toast.LENGTH_SHORT).show();
-                            return;
-                        }else{
+
+
                             kuaidiUtils.getRequest1(com,no);
-                        }
+
 
 
 
