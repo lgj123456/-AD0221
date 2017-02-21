@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
                         if(com.isEmpty() || no.isEmpty()){
                             Toast.makeText(MainActivity.this, "快递公司编号或快递订单号不能为空", Toast.LENGTH_SHORT).show();
+                            return;
                         }else{
                             kuaidiUtils.getRequest1(com,no);
                         }
